@@ -68,11 +68,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/chalermpong/strapi-firebase-auth-plugin.git"
+    "url": "git+ssh://git@github.com/chalermpong/strapi-firebase-auth-strategy.git"
   },
   "bugs": {
-    "url": "https://github.com/chalermpong/strapi-firebase-auth-plugin/issues"
+    "url": "https://github.com/chalermpong/strapi-firebase-auth-strategy/issues"
   },
-  "homepage": "https://github.com/chalermpong/strapi-firebase-auth-plugin#readme",
+  "homepage": "https://github.com/chalermpong/strapi-firebase-auth-strategy#readme",
   "author": "chalermpong <s_pong_c@hotmail.com>"
 }
