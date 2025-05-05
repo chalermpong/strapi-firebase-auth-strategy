@@ -1,1 +1,1 @@
-export const PLUGIN_ID = 'strapi-firebase-auth-plugin';
+export const PLUGIN_ID = 'strapi-firebase-auth-strategy';

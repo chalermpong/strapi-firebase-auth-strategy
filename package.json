@@ -1,7 +1,7 @@
 {
-  "name": "strapi-firebase-auth-plugin",
+  "name": "strapi-firebase-auth-strategy",
   "description": "Use Firebase Auth ID Token with your strapi backend",
-  "version": "1.0.2",
+  "version": "1.0.17",
   "keywords": [],
   "type": "commonjs",
   "exports": {
@@ -61,11 +61,10 @@
   },
   "strapi": {
     "kind": "plugin",
-    "name": "firebase-auth-plugin",
-    "displayName": "Firebase Authentication - Strapi Plugin",
+    "name": "firebase-auth-strategy",
+    "displayName": "Firebase Authentication Strategy - Strapi Plugin",
     "description": "Use Firebase Auth ID Token with your strapi backend"
   },
-
   "license": "MIT",
   "repository": {
     "type": "git",
