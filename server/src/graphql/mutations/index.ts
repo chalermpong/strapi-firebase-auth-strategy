@@ -1,10 +1,10 @@
-import type {Core} from "@strapi/strapi";
+import type {Core} from '@strapi/strapi'
 
-import { registerFirebase } from './register-firebase';
+import {registerFirebase} from './register-firebase'
 
 
-export const getMutations = (context: { strapi: Core.Strapi, nexus: any }) => {
-  const { nexus, strapi } = context
+export const getMutations = (context: { strapi: Core.Strapi, nexus }) => {
+  const {nexus} = context
 
   const mutations = {
     registerFirebase,
@@ -15,10 +15,10 @@ export const getMutations = (context: { strapi: Core.Strapi, nexus: any }) => {
 
     definition(t) {
       for (const [name, getConfig] of Object.entries(mutations)) {
-        const config = getConfig(context);
+        const config = getConfig(context)
 
-        t.field(name, config);
+        t.field(name, config)
       }
     },
-  });
+  })
 }

@@ -1,11 +1,11 @@
-import type {Core} from "@strapi/strapi";
+import type {Core} from '@strapi/strapi'
 
 
-export const registerFirebase = (context: { strapi: Core.Strapi, nexus: any }) => {
+export const registerFirebase = (context: { strapi: Core.Strapi, nexus: { nonNull: (type: string) => unknown } }) => {
 
-  const { nexus, strapi } = context
+  const {nexus, strapi} = context
 
-  const { nonNull } = nexus
+  const {nonNull} = nexus
 
   return {
     type: nonNull('UsersPermissionsLoginPayload'),
@@ -13,7 +13,7 @@ export const registerFirebase = (context: { strapi: Core.Strapi, nexus: any }) =
     async resolve(parent, args, context) {
 
       if (context.state?.auth?.strategy.name !== 'firebase-auth-strategies') {
-        throw new Error('Firebase ID Token is missing or invalid');
+        throw new Error('Firebase ID Token is missing or invalid')
       }
 
       const userId = context.state?.auth?.credentials?.id
@@ -28,27 +28,27 @@ export const registerFirebase = (context: { strapi: Core.Strapi, nexus: any }) =
       if (!userId) {
         // New user
 
-        const advancedSettings: any = await strapi
-          .store({ type: 'plugin', name: 'users-permissions', key: 'advanced' })
-          .get();
+        const advancedSettings: { default_role?: string } = await strapi
+          .store({type: 'plugin', name: 'users-permissions', key: 'advanced'})
+          .get()
 
         // Retrieve default role.
         const defaultRole = await strapi.db
           .query('plugin::users-permissions.role')
-          .findOne({ where: { type: advancedSettings.default_role } });
+          .findOne({where: {type: advancedSettings.default_role}})
 
         // Create the new user.
         const newUser = {
           ...profile,
           role: defaultRole.id,
-        };
+        }
         const createdUser = await strapi.db
           .query('plugin::users-permissions.user')
-          .create({ data: newUser });
+          .create({data: newUser})
         return {
           user: createdUser,
           jwt: '',
-        };
+        }
       } else {
         // Existing user -> Update profile
         const updatedUser = await strapi.db
@@ -63,7 +63,7 @@ export const registerFirebase = (context: { strapi: Core.Strapi, nexus: any }) =
         return {
           user: updatedUser,
           jwt: '',
-        };
+        }
       }
     },
   }

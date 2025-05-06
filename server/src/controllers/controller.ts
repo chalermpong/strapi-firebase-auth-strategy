@@ -1,13 +1,13 @@
-import type { Core } from '@strapi/strapi';
+import type {Core} from '@strapi/strapi'
 
-const controller = ({ strapi }: { strapi: Core.Strapi }) => ({
+const controller = ({strapi}: { strapi: Core.Strapi }) => ({
   index(ctx) {
     ctx.body = strapi
       .plugin('strapi-firebase-auth-strategy')
       // the name of the service file & the method.
       .service('service')
-      .getWelcomeMessage();
+      .getWelcomeMessage()
   },
-});
+})
 
-export default controller;
+export default controller

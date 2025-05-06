@@ -1,9 +1,9 @@
-import {DecodedIdToken, getAuth} from "firebase-admin/auth";
+import {DecodedIdToken, getAuth} from 'firebase-admin/auth'
 const USER_PERMISSIONS_PLUGIN = 'plugin::users-permissions.user'
 
 const getUserPermissionsService = (name: string) => {
-  return strapi.plugin('users-permissions').service(name);
-};
+  return strapi.plugin('users-permissions').service(name)
+}
 
 const getToken = async (ctx)=> {
   let token: string
@@ -33,12 +33,12 @@ export const firebaseAuthStrategy = {
     let firUser: DecodedIdToken
     try {
       firUser = await getToken(ctx)
-    } catch (err) {
-      return { authenticated: false }
+    } catch {
+      return {authenticated: false}
     }
 
     const user = await strapi.db.query(USER_PERMISSIONS_PLUGIN)
-      .findOne({ where: { username: `firebase.uid.${firUser.uid}` }, populate: ['role'] })
+      .findOne({where: {username: `firebase.uid.${firUser.uid}`}, populate: ['role']})
 
     if (!user) {
       return {
@@ -51,9 +51,9 @@ export const firebaseAuthStrategy = {
     const contentPermissions = permissions.map(getUserPermissionsService('permission').toContentAPIPermission)
 
     // Generate an ability (content API engine) based on the given permissions
-    const ability = await strapi.contentAPI.permissions.engine.generateAbility(contentPermissions);
+    const ability = await strapi.contentAPI.permissions.engine.generateAbility(contentPermissions)
 
-    ctx.state.user = user;
+    ctx.state.user = user
 
     return {
       authenticated: true,
@@ -62,6 +62,6 @@ export const firebaseAuthStrategy = {
         firUser,
       },
       ability,
-    };
+    }
   },
 }
