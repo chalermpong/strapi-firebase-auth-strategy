@@ -4,7 +4,7 @@ import {PluginIcon} from './components/PluginIcon'
 
 
 export default {
-  register(app) {
+  register(app: any) {
     app.addMenuLink({
       to: `plugins/${PLUGIN_ID}`,
       icon: PluginIcon,
