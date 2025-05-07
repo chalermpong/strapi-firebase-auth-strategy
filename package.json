@@ -1,7 +1,7 @@
 {
   "name": "@chalermpong/strapi-firebase-auth-strategy",
   "description": "Use Firebase Auth ID Token with your strapi backend",
-  "version": "1.0.18",
+  "version": "0.9.0",
   "keywords": [
     "strapi",
     "plugin",
