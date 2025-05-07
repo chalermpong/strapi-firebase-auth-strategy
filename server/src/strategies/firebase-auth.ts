@@ -37,6 +37,10 @@ export const firebaseAuthStrategy = {
       return {authenticated: false}
     }
 
+    if (!firUser) {
+      return {authenticated: false}
+    }
+
     const user = await strapi.db.query(USER_PERMISSIONS_PLUGIN)
       .findOne({where: {username: `firebase.uid.${firUser.uid}`}, populate: ['role']})
 
